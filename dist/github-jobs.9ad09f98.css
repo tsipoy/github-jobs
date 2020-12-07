@@ -4,6 +4,11 @@ body {
 
 html {
     font-family: Roboto;
+    color: #334680;
+}
+
+#root {
+    background-color: #b9bdcf1e;
 }
 
 /*# sourceMappingURL=/github-jobs.9ad09f98.css.map */

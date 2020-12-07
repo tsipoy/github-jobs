@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
-
+import {Context} from "./Context"
 const HeaderStyle = styled.div`
     padding-block-end: 29px;
 
@@ -24,11 +24,17 @@ const HeaderStyle = styled.div`
 `;
 
 export default function Header() {
+    const { inputValue, setInputValue } = useContext(Context);
+
     return (
         <HeaderStyle>
             <h1>Github Jobs</h1>
             <form>
-                <input type="text" placeholder="Title, companies, experti..." />
+                <input 
+                    type="text"
+                    value={inputValue}
+                    onChange={setInputValue} 
+                    placeholder="Title, companies, experti..." />
                 <button>Search</button>
             </form>
         </HeaderStyle>
