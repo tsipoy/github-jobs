@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "./Context";
 import styled from "styled-components";
 
@@ -65,15 +66,20 @@ const MainContent = styled.div`
 
 export default function ListsOfJob() {
   const { state } = useContext(Context);
+  const {jobs} = state
 
   //logo, company name, job, full time, place, created
-  const allJobs = state.jobs.map((job) => (
+  const allJobs = jobs.map((job) => (
     <MainContent key={job.id}>
       <img src={job.company_logo} />
       <nav>
         <ul>
           <li>{job.company}</li>
-          <li>{job.title}</li>
+          <li>
+            {/* <Link to={`/positions/${job.id}`}> */}
+              {job.title}
+              {/* </Link> */}
+          </li>
           <li className="type">{job.type}</li>
         </ul>
         <ul>
