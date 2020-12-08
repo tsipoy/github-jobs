@@ -1,12 +1,9 @@
 body {
     margin: 0;
+    background-color: #b9bdcf1e;
 }
 
 html {
     font-family: Roboto;
     color: #334680;
-}
-
-#root {
-    background-color: #b9bdcf1e;
 }

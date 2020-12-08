@@ -1,16 +1,36 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
 
+const FormStyle = styled.form `
+    display: flex;
+    flex-direction: column;
+
+    label {
+        padding-block-end: 32px;
+    }
+`;
 export default function Location() {
     return (
-        <div>
-            <input type="checkbox" /> Full time
-            <label>Location 
-                <input type="text" placeholder=" City, state, zip code or country"/>
-                <input type="checkbox" /> London
-                <input type="checkbox" /> Amsterdam
-                <input type="checkbox" /> New York
-                <input type="checkbox" /> Berlin
+        <FormStyle>
+            <label>Full time
+                <input type="checkbox" />
             </label>
-        </div>
+            <label>Location</label> 
+            <label>
+                <input type="text" placeholder=" City, state, zip code or country"/>
+            </label>
+            <label>London 
+                <input type="checkbox" /> 
+            </label>
+            <label>Amsterdam 
+                <input type="checkbox" /> 
+            </label>
+            <label>New York 
+                <input type="checkbox" />
+            </label>
+            <label>Berlin 
+                <input type="checkbox" /> 
+            </label>
+        </FormStyle>
     )
 }

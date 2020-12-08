@@ -1,23 +1,30 @@
-import React from 'react';
+import React, {useContext} from "react";
+import {Context} from "./Context"
 
 import ListOfJobs from "./ListsOfJob";
 import Header from "./Header";
-import Location from "./Location"
+import Location from "./Location";
 
 import styled from "styled-components";
 
-const DivWrapper = styled.div `
-    padding-inline-start: 19px;
-    padding-inline-end: 12px;
-
+const DivWrapper = styled.div`
+  padding-inline-start: 19px;
+  padding-inline-end: 12px;
 `;
 
 export default function App() {
-    return (
-        <DivWrapper>
-            <Location />
-            <Header />
-            <ListOfJobs />
-        </DivWrapper>
-    )
+    const { isLoaded } = useContext(Context);
+  return (
+    <DivWrapper>
+      <Header />
+      {isLoaded ? (
+        "Loading ..."
+      ) : (
+        <div>
+          <Location />
+          <ListOfJobs />
+        </div>
+      )}
+    </DivWrapper>
+  );
 }

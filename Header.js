@@ -24,7 +24,7 @@ const HeaderStyle = styled.div`
 `;
 
 export default function Header() {
-    const { inputValue, setInputValue } = useContext(Context);
+    const { inputValue, searchItems } = useContext(Context);
 
     return (
         <HeaderStyle>
@@ -32,8 +32,8 @@ export default function Header() {
             <form>
                 <input 
                     type="text"
-                    value={inputValue}
-                    onChange={setInputValue} 
+                    // value={inputValue}
+                    // onChange={searchItems} 
                     placeholder="Title, companies, experti..." />
                 <button>Search</button>
             </form>

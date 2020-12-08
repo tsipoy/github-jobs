@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #b9bdcf1e;
 }
 
 html {
@@ -7,8 +8,5 @@ html {
     color: #334680;
 }
 
-#root {
-    background-color: #b9bdcf1e;
-}
 
 /*# sourceMappingURL=/github-jobs.9ad09f98.css.map */
