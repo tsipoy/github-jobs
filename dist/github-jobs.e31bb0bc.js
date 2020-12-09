@@ -33893,10 +33893,18 @@ function ContextProvider({
           break;
         }
 
-      case "IS_CHECKED":
+      case "SET_INPUT_VALUE":
         {
           return { ...state,
-            isChecked: true
+            inputValue: inputValue.value
+          };
+        }
+
+      case "IS_CHECKED":
+        {
+          const newLists = isChecked.filter(newList => newList.type !== action.isChecked);
+          return { ...state,
+            newLists
           };
         }
 
@@ -33906,7 +33914,9 @@ function ContextProvider({
   }, {
     jobs: [],
     isLoaded: true,
-    isChecked: false
+    isChecked: false,
+    inputValue: "",
+    location: []
   });
 
   async function getJobs() {
@@ -36004,28 +36014,46 @@ function Header() {
     state
   } = (0, _react.useContext)(_Context.Context);
   const {
-    jobs
+    jobs,
+    inputValue
   } = state;
-  const [inputValue, setInputValue] = (0, _react.useState)("");
-  const [location, setLocation] = (0, _react.useState)([]);
 
   const handleSubmit = e => {
     e.preventDefault();
   };
 
-  const allJobs = jobs.map(job => console.log(job));
-  const filteredJobs = allJobs.filter(job => {
-    console.log(job.location === "New York"); // return job.toLowerCase().includes(inputValue.toLowerCase())
-  });
-  (0, _react.useEffect)(() => {
-    setLocation(filteredJobs);
-  }, [inputValue]);
+  const searchJobs = e => {
+    dispatch({
+      type: "SET_INPUT_VALUE",
+      inputValue: e.target.value
+    });
+    const filteredCities = jobs.filter(job => {
+      return job.location.toLowerCase() === e.target.value;
+    });
+    dispatch({
+      type: "SET_JOBS",
+      filteredCities
+    });
+  }; // const allJobs = jobs.map((job) => (
+  //     console.log(job)
+  // ));
+  // const filteredJobs = allJobs.filter((job) => {
+  //     console.log(job)
+  //   return job.toLowerCase().includes(inputValue.toLowerCase())
+  // }
+  // );
+  // useEffect(() => {
+  //   searchJobs();
+  // }, [inputValue]);
+
+
   return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", null, "Github Jobs"), /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
+    name: "input",
     value: inputValue,
-    onChange: e => setInputValue(e.target.value),
+    onChange: searchJobs,
     placeholder: "Title, companies, experti..."
   }), /*#__PURE__*/_react.default.createElement("button", null, "Search")));
 }
@@ -36037,13 +36065,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Location;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Context = require("./Context");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const FormStyle = _styledComponents.default.form`
     display: flex;
@@ -36058,7 +36090,10 @@ function Location() {
   const {
     state,
     dispatch
-  } = useContext(_Context.Context);
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    isChecked
+  } = state;
   return /*#__PURE__*/_react.default.createElement(FormStyle, null, /*#__PURE__*/_react.default.createElement("label", null, "Full time", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox"
   })), /*#__PURE__*/_react.default.createElement("label", null, "Location"), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
@@ -36205,7 +36240,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53588" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

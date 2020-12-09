@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import { Context } from './Context';
 
@@ -12,6 +12,7 @@ const FormStyle = styled.form `
 `;
 export default function Location() {
     const {state, dispatch} = useContext(Context);
+    const {isChecked} = state
     
     return (
         <FormStyle>

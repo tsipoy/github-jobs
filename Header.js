@@ -24,28 +24,34 @@ const HeaderStyle = styled.div`
 
 export default function Header() {
   const { state } = useContext(Context);
-  const { jobs } = state;
-  const [inputValue, setInputValue] = useState("");
-  const [location, setLocation] = useState([]);
+  const { jobs, inputValue } = state;
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
-  const allJobs = jobs.map((job) => (
-      console.log(job)
-  ));
-
-  const filteredJobs = allJobs.filter((job) => {
-      console.log(job.location === "New York")
-    // return job.toLowerCase().includes(inputValue.toLowerCase())
+  const searchJobs = (e) => {
+    dispatch({type: "SET_INPUT_VALUE", inputValue: e.target.value});
+    const filteredCities = jobs.filter(job => {
+        return job.location.toLowerCase() === e.target.value;
+    })
+    dispatch({type: "SET_JOBS", filteredCities})
   }
 
-  );
+  // const allJobs = jobs.map((job) => (
+  //     console.log(job)
+  // ));
 
-  useEffect(() => {
-    setLocation(filteredJobs);
-  }, [inputValue]);
+  // const filteredJobs = allJobs.filter((job) => {
+  //     console.log(job)
+  //   return job.toLowerCase().includes(inputValue.toLowerCase())
+  // }
+
+  // );
+
+  // useEffect(() => {
+  //   searchJobs();
+  // }, [inputValue]);
 
   return (
     <HeaderStyle>
@@ -53,8 +59,9 @@ export default function Header() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          name="input"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={searchJobs}
           placeholder="Title, companies, experti..."
         />
         <button>Search</button>
