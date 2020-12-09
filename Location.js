@@ -29,12 +29,6 @@ const FormStyle = styled.form `
 export default function Location() {
     const {state, dispatch} = useContext(Context);
     const {isChecked, jobs} = state
-
-    const filteredChecked = () => {
-        if(isChecked) {
-            const filteredLocation = jobs.filter(jobs.location === isChecked);
-        }
-    }
     
     return (
         <FormStyle>

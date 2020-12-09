@@ -66,7 +66,6 @@ const MainContent = styled.div`
 
   @media (min-width: 900px) {
     padding-block-end: 0;
-    padding-block-start: 0;
     margin-inline-start: 23px;
   }
 `;
@@ -82,7 +81,7 @@ export default function ListsOfJob() {
         <ul>
           <li>{job.company}</li>
           <li>
-            <Link to={`/positions/${job.id}`}>
+            <Link to={`/details/${job.id}`}>
               {job.title}
               </Link>
           </li>
@@ -99,6 +98,7 @@ export default function ListsOfJob() {
       </nav>
     </MainContent>
   ));
+
   return (
     <div>
       {allJobs}

@@ -17,9 +17,10 @@ function ContextProvider({ children }) {
           break;
         }
 
-        case "SET_INPUT_VALUE": {
-          return {...state, inputValue: inputValue.value}
-        }
+        // case "SET_INPUT_VALUE": {
+        //   return {...state, inputValue: inputValue.value}
+        // }
+
         case "IS_CHECKED": {
           const newLists = isChecked.filter(newList => newList.type !== action.isChecked)
           return {...state, newLists}
@@ -32,8 +33,8 @@ function ContextProvider({ children }) {
     jobs: [],
     isLoaded: true,
     isChecked: false,
-    inputValue: "",
-    location: []
+    // inputValue: "",
+    // location: []
   })
 
 

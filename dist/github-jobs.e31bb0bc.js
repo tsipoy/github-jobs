@@ -33892,13 +33892,9 @@ function ContextProvider({
           };
           break;
         }
-
-      case "SET_INPUT_VALUE":
-        {
-          return { ...state,
-            inputValue: inputValue.value
-          };
-        }
+      // case "SET_INPUT_VALUE": {
+      //   return {...state, inputValue: inputValue.value}
+      // }
 
       case "IS_CHECKED":
         {
@@ -33914,9 +33910,9 @@ function ContextProvider({
   }, {
     jobs: [],
     isLoaded: true,
-    isChecked: false,
-    inputValue: "",
-    location: []
+    isChecked: false // inputValue: "",
+    // location: []
+
   });
 
   async function getJobs() {
@@ -35949,7 +35945,6 @@ const MainContent = _styledComponents.default.div`
 
   @media (min-width: 900px) {
     padding-block-end: 0;
-    padding-block-start: 0;
     margin-inline-start: 23px;
   }
 `;
@@ -35967,7 +35962,7 @@ function ListsOfJob() {
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: job.company_logo
   }), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: `/positions/${job.id}`
+    to: `/details/${job.id}`
   }, job.title)), /*#__PURE__*/_react.default.createElement("li", {
     className: "type"
   }, job.type)), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("i", {
@@ -36001,7 +35996,7 @@ const HeaderStyle = _styledComponents.default.div`
   padding-block-end: 29px;
 
   form {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     padding-block-end: 4px;
     padding-block-start: 4px;
@@ -36020,7 +36015,7 @@ const HeaderStyle = _styledComponents.default.div`
   }
 
   button {
-    background-color: #1E86FF;
+    background-color: #1e86ff;
     border-radius: 4px;
     color: white;
     line-height: 19px;
@@ -36031,7 +36026,7 @@ const HeaderStyle = _styledComponents.default.div`
     border: none;
   }
 
-  @media(min-width: 900px) {
+  @media (min-width: 900px) {
     form {
       margin: auto;
       max-width: 900px;
@@ -36051,30 +36046,29 @@ function Header() {
 
   const handleSubmit = e => {
     e.preventDefault();
-  }; // const allJobs = jobs.map((job) => (
-  //     console.log(job)
-  // ));
-  // const filteredJobs = allJobs.filter((job) => {
-  //     console.log(job)
-  //   return job.toLowerCase().includes(inputValue.toLowerCase())
-  // }
-  // );
-  // useEffect(() => {
-  //   setLocation(filteredJobs);
-  // }, []);
+  };
 
-
+  if (!jobs) return null;
+  const filteredJobs = jobs.filter(job => {
+    console.log(job.title === inputValue);
+    return job.title.toLowerCase().includes(inputValue.toLowerCase());
+  });
+  (0, _react.useEffect)(() => {
+    setLocation(filteredJobs);
+  }, []);
   return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", null, "Github Jobs"), /*#__PURE__*/_react.default.createElement("div", {
     className: "header-style"
   }, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "input" // value={inputValue}
-    // onChange={(e) => setInputValue(e.target.value)}
-    ,
+    name: "input",
+    value: inputValue,
+    onChange: e => setInputValue(e.target.value),
     placeholder: "Title, companies, experti..."
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Search"))));
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: e => setInputValue(e.target.value)
+  }, "Search"))));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./Context":"Context.js"}],"Location.js":[function(require,module,exports) {
 "use strict";
@@ -36130,13 +36124,6 @@ function Location() {
     isChecked,
     jobs
   } = state;
-
-  const filteredChecked = () => {
-    if (isChecked) {
-      const filteredLocation = jobs.filter(jobs.location === isChecked);
-    }
-  };
-
   return /*#__PURE__*/_react.default.createElement(FormStyle, null, /*#__PURE__*/_react.default.createElement("label", null, "Full time", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox"
   })), /*#__PURE__*/_react.default.createElement("label", {
@@ -36167,34 +36154,56 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _Context = require("./Context");
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const endPoint = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=1&search=code";
+const DetailsWrapper = _styledComponents.default.div`
+  .type {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    border: 1px solid #334680;
+    box-sizing: border-box;
+    border-radius: 4px;
+    max-width: fit-content;
+    padding-block-start: 6px;
+    padding-block-end: 6px;
+    padding-inline-end: 8px;
+    padding-inline-start: 8px;
+    margin-block-start: 20px;
+  }
+`;
 
 function JobDetails() {
   const {
-    description
-  } = (0, _react.useParams)();
-  const [jobDetails, setJobDetails] = (0, _react.useState)();
-
-  async function getJobDetails() {
-    const response = await fetch(endPoint);
-    const data = await response.json();
-    console.log(data);
-    setJobDetails(data);
-  }
-
-  (0, _react.useEffect)(() => {
-    getJobDetails();
-  }, []);
-  const getMoredetails = jobDetails.map(job => /*#__PURE__*/_react.default.createElement("p", null, job.description));
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, description), getMoredetails, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    state
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    jobs
+  } = state;
+  const eachJobDetails = jobs.map(job => /*#__PURE__*/_react.default.createElement(DetailsWrapper, {
+    key: job.id
+  }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.title), /*#__PURE__*/_react.default.createElement("li", {
+    className: "type"
+  }, job.type)), /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("i", {
+    className: "ri-earth-fill"
+  }), " ", job.location), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("p", null, /*#__PURE__*/_react.default.createElement("img", {
+    src: job.company_logo
+  })), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("i", {
+    className: "ri-time-line"
+  }), " ", job.created_at), /*#__PURE__*/_react.default.createElement("p", null, job.description))));
+  return /*#__PURE__*/_react.default.createElement("div", null, eachJobDetails, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, "Go back!"));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Context":"Context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36254,14 +36263,18 @@ function App() {
   const {
     state
   } = (0, _react.useContext)(_Context.Context);
+  const {
+    isLoaded
+  } = state;
   return /*#__PURE__*/_react.default.createElement(DivWrapper, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
     className: "contentWrapper"
   }, /*#__PURE__*/_react.default.createElement(_Location.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
     path: "/"
-  }, state.isLoaded ? /*#__PURE__*/_react.default.createElement("p", {
+  }, isLoaded ? /*#__PURE__*/_react.default.createElement("p", {
     className: "loading"
   }, "LOADING ...") : /*#__PURE__*/_react.default.createElement(_ListsOfJob.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/positions/:description"
+    path: "/description/:description "
   }, /*#__PURE__*/_react.default.createElement(_JobDetails.default, null))))));
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Context":"Context.js","./ListsOfJob":"ListsOfJob.js","./Header":"Header.js","./Location":"Location.js","./JobDetails":"JobDetails.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"index.js":[function(require,module,exports) {
@@ -36306,7 +36319,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53588" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61069" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

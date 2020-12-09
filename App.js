@@ -37,6 +37,7 @@ const DivWrapper = styled.div`
 
 export default function App() {
   const { state } = useContext(Context);
+  const {isLoaded} = state
   return (
     <DivWrapper>
       <Header />
@@ -44,14 +45,14 @@ export default function App() {
         <Location />
         <Router>
           <Switch>
-            <Route path="/">
-              {state.isLoaded ? (
+            <Route exact path="/">
+              {isLoaded ? (
                 <p className="loading">LOADING ...</p>
               ) : (
                 <ListOfJobs />
               )}
             </Route>
-            <Route path="/positions/:description">
+            <Route path="/description/:description ">
               <JobDetails />
             </Route>
           </Switch>

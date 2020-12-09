@@ -5,7 +5,7 @@ const HeaderStyle = styled.div`
   padding-block-end: 29px;
 
   form {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     padding-block-end: 4px;
     padding-block-start: 4px;
@@ -24,7 +24,7 @@ const HeaderStyle = styled.div`
   }
 
   button {
-    background-color: #1E86FF;
+    background-color: #1e86ff;
     border-radius: 4px;
     color: white;
     line-height: 19px;
@@ -35,7 +35,7 @@ const HeaderStyle = styled.div`
     border: none;
   }
 
-  @media(min-width: 900px) {
+  @media (min-width: 900px) {
     form {
       margin: auto;
       max-width: 900px;
@@ -53,20 +53,16 @@ export default function Header() {
     e.preventDefault();
   };
 
-  // const allJobs = jobs.map((job) => (
-  //     console.log(job)
-  // ));
+  if (!jobs) return null;
 
-  // const filteredJobs = allJobs.filter((job) => {
-  //     console.log(job)
-  //   return job.toLowerCase().includes(inputValue.toLowerCase())
-  // }
+  const filteredJobs = jobs.filter((job) => {
+    console.log(job.title === inputValue);
+    return job.title.toLowerCase().includes(inputValue.toLowerCase());
+  });
 
-  // );
-
-  // useEffect(() => {
-  //   setLocation(filteredJobs);
-  // }, []);
+  useEffect(() => {
+    setLocation(filteredJobs);
+  }, []);
 
   return (
     <HeaderStyle>
@@ -76,11 +72,11 @@ export default function Header() {
           <input
             type="text"
             name="input"
-            // value={inputValue}
-            // onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
             placeholder="Title, companies, experti..."
           />
-          <button>Search</button>
+          <button onClick={(e) => setInputValue(e.target.value)}>Search</button>
         </form>
       </div>
     </HeaderStyle>
