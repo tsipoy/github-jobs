@@ -71,37 +71,31 @@ const MainContent = styled.div`
 `;
 export default function ListsOfJob() {
   const { state } = useContext(Context);
-  const {jobs} = state
+  const { jobs } = state;
 
   //logo, company name, job, full time, place, created
   const allJobs = jobs.map((job) => (
     <MainContent key={job.id}>
-      <img src={job.company_logo} />
-      <nav>
-        <ul>
-          <li>{job.company}</li>
-          <li>
-            <Link to={`/details/${job.id}`}>
-              {job.title}
-              </Link>
-          </li>
-          <li className="type">{job.type}</li>
-        </ul>
-        <ul>
-          <li>
-            <i className="ri-earth-fill"></i> {job.location}
-          </li>
-          <li>
-            <i className="ri-time-line"></i> {job.created_at}
-          </li>
-        </ul>
-      </nav>
+      <Link to={`/details/${job.id}`}>
+        <img src={job.company_logo} />
+        <nav>
+          <ul>
+            <li>{job.company}</li>
+            <li>{job.title}</li>
+            <li className="type">{job.type}</li>
+          </ul>
+          <ul>
+            <li>
+              <i className="ri-earth-fill"></i> {job.location}
+            </li>
+            <li>
+              <i className="ri-time-line"></i> {job.created_at}
+            </li>
+          </ul>
+        </nav>
+      </Link>
     </MainContent>
   ));
 
-  return (
-    <div>
-      {allJobs}
-    </div>
-  );
+  return <div>{allJobs}</div>;
 }

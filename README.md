@@ -1,86 +1,38 @@
 # Github Jobs
 
-Here we are, the last graded project of this semester.
-
-Your challenge: Create a job search using an API, and use React to handle the frontend. Don’t look at the existing solution. Fulfill user stories below:
-
-![image](./assets/1.png)
-![image](./assets/2.png)
-![image](./assets/3.png)
-
-- User story: I can see a list of jobs in a city by default
-- User story: I can search for jobs with a given keyword
-- User story: I can search for jobs with a city name, zip code or other location
-- User story: I can select one option from at least 4 pre-defined options
-- User story: I can search for a full-time job only
-- User story: I can see a list of jobs with their logo, company name, location, and posted time.
-- User story: When I select a job, I can see job descriptions and how to apply like the given design.
-- User story: When I am on the job details page, I can go back to the search page
-- User story (optional): I can see a list of jobs in the closest city from my location by default
-- User story (optional): I can see jobs in different pages, 5 items each page
-
-You’ll also have to apply a few concept we learned in class, such as a **reducer** and a global **context**. And there will be a bonus for those who can find a use case for a **compound component**.
-
-**Icon**: https://google.github.io/material-design-icons/ (you can also use the react-icons package)
-
-**API**: https://jobs.github.com/api. Use data from the API to create questions and answers.
-
-*If you get some CORS errors, you can use https://cors-anywhere.herokuapp.com/ to help with accessing data from other websites that are normally forbidden by the same-origin policy of web browsers*
-
-**Design** : https://www.figma.com/file/gAkVx9CdOqnJcCjJ7nVNkw
-
-**Live app** : https://jolly-heisenberg-20c49e.netlify.app/
-
-Once you completed, polish a nice readme submit your solutions on this link : https://forms.gle/Xg6kJMKmrBkyTe3TA, by providing URLs for both GitHub repository and live app on Netlify.
-
-For the custom domain url you'll enter in netlify, please use the following naming convention : **github-jobs-_YOUR_FIRSTNAME_.netlify.app** (replace YOUR_FIRSTNAME by your firstname)
-
-Good luck everybody!
-
-Template for your readme :
-
-<!-- Please update value in the {}  -->
-
-<h1 align="center">{Your project name}</h1>
-
-<div align="center">
-  <h3>
-    <a href="https://{your-demo-link.your-domain}">
-      Demo
-    </a>
-    <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
-      Solution
-    </a>
-  </h3>
-</div>
-
-<!-- TABLE OF CONTENTS -->
-
-## Table of Contents
-
--   [Overview](#overview)
-    -   [Built With](#built-with)
--   [Features](#features)
--   [How to use](#how-to-use)
--   [Contact](#contact)
--   [Acknowledgements](#acknowledgements)
-
-<!-- OVERVIEW -->
-
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![screenshot](./assets/screenshot.png)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
+### My experience :
+I didn't really have experience in this project. I could not get most of the main thing that is meant to do and to have.
 
--   Where can I see your demo?
--   What was your experience?
--   In a few sentences, explain the structure of your project.
--   If you had more time, what area of your project would you improve?
--   Did you learn anything new while working on this project?
--   What was the most challenging part for you?
--   Any other comments?
+### Project stucture : 
+
+- I have*Context* file which contains *UseReducer* for handling the state.
+- Inside the useReducer, I have *a function* and *initial value*. 
+- I have 4 components files which are: 
+- *Header* : contains the search title,    companies, expertise or benefits input with the research button
+- *JobDetails* : contains the job details
+- *listOfJobs* : shows all the lists of job
+- And *location* : contains a big form to filter the locations, city, state, zip code or country.
+
+### If you had more time,
+
+- I still want to work with **filtering**, **pagination** and **useParams**
+
+### Area of the project that I would like improving
+
+- css,
+- filtering items
+- pagination,
+- showing the the details in another page.
+
+### The most challenging part of the project:
+
+- filtering the array from the **API** indeed filtering the checkbok.
+- Showing the details page. I got empty page when I click the link.
+
 
 
 
@@ -89,10 +41,6 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 -   [React](https://reactjs.org/)
-
-## Features
-
-<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
 ## How To Use
 
@@ -111,11 +59,7 @@ $ npm install
 $ npm start
 ```
 
-## Acknowledgements
-
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
-
 ## Contact
 
--   Website [your-website.com](https://{your-web-site-link})
--   GitHub [@your-username](https://{github.com/your-usermame})
+-   Website [your-website.com](https://github-jobs-natacha.netlify.app/)
+-   GitHub [@your-username](https://github.com/tsipoy/github-jobs)

@@ -35959,17 +35959,17 @@ function ListsOfJob() {
 
   const allJobs = jobs.map(job => /*#__PURE__*/_react.default.createElement(MainContent, {
     key: job.id
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: `/details/${job.id}`
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: job.company_logo
-  }), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: `/details/${job.id}`
-  }, job.title)), /*#__PURE__*/_react.default.createElement("li", {
+  }), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("li", null, job.title), /*#__PURE__*/_react.default.createElement("li", {
     className: "type"
   }, job.type)), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("i", {
     className: "ri-earth-fill"
   }), " ", job.location), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("i", {
     className: "ri-time-line"
-  }), " ", job.created_at)))));
+  }), " ", job.created_at))))));
   return /*#__PURE__*/_react.default.createElement("div", null, allJobs);
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Context":"Context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Header.js":[function(require,module,exports) {
