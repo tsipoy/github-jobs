@@ -21,6 +21,13 @@ html {
     border-radius: 8px;
 }
 
+@media(min-width: 900px) {
+    .header-style {
+        padding-block-end: 65px;
+        padding-block-start: 65px;
+    } 
+}
+
 /* .header-style input {
     padding: 10px;
     border-radius: 8px;

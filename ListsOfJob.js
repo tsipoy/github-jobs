@@ -12,6 +12,7 @@ const MainContent = styled.div`
   padding-block-end: 23px;
   padding-block-start: 23px;
   margin-block-end: 50px;
+  padding: 16px;
 
   nav {
     margin-block-start: -38px;
@@ -62,8 +63,13 @@ const MainContent = styled.div`
     padding-inline-end: 29px;
     color: #b9bdcf;
   }
-`;
 
+  @media (min-width: 900px) {
+    padding-block-end: 0;
+    padding-block-start: 0;
+    margin-inline-start: 23px;
+  }
+`;
 export default function ListsOfJob() {
   const { state } = useContext(Context);
   const {jobs} = state
@@ -76,9 +82,9 @@ export default function ListsOfJob() {
         <ul>
           <li>{job.company}</li>
           <li>
-            {/* <Link to={`/positions/${job.id}`}> */}
+            <Link to={`/positions/${job.id}`}>
               {job.title}
-              {/* </Link> */}
+              </Link>
           </li>
           <li className="type">{job.type}</li>
         </ul>
@@ -94,8 +100,8 @@ export default function ListsOfJob() {
     </MainContent>
   ));
   return (
-    <>
-      <div>{allJobs}</div>
-    </>
+    <div>
+      {allJobs}
+    </div>
   );
 }

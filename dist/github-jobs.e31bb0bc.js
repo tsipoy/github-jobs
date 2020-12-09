@@ -35895,6 +35895,7 @@ const MainContent = _styledComponents.default.div`
   padding-block-end: 23px;
   padding-block-start: 23px;
   margin-block-end: 50px;
+  padding: 16px;
 
   nav {
     margin-block-start: -38px;
@@ -35945,6 +35946,12 @@ const MainContent = _styledComponents.default.div`
     padding-inline-end: 29px;
     color: #b9bdcf;
   }
+
+  @media (min-width: 900px) {
+    padding-block-end: 0;
+    padding-block-start: 0;
+    margin-inline-start: 23px;
+  }
 `;
 
 function ListsOfJob() {
@@ -35959,14 +35966,16 @@ function ListsOfJob() {
     key: job.id
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: job.company_logo
-  }), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("li", null, job.title), /*#__PURE__*/_react.default.createElement("li", {
+  }), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: `/positions/${job.id}`
+  }, job.title)), /*#__PURE__*/_react.default.createElement("li", {
     className: "type"
   }, job.type)), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("i", {
     className: "ri-earth-fill"
   }), " ", job.location), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("i", {
     className: "ri-time-line"
   }), " ", job.created_at)))));
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, allJobs));
+  return /*#__PURE__*/_react.default.createElement("div", null, allJobs);
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Context":"Context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Header.js":[function(require,module,exports) {
 "use strict";
@@ -36020,6 +36029,13 @@ const HeaderStyle = _styledComponents.default.div`
     padding-inline-end: 27px;
     padding-inline-start: 27px;
     border: none;
+  }
+
+  @media(min-width: 900px) {
+    form {
+      margin: auto;
+      max-width: 900px;
+    }
   }
 `;
 
@@ -36087,6 +36103,22 @@ const FormStyle = _styledComponents.default.form`
     label {
         padding-block-end: 32px;
     }
+
+    .locationLabel {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 21px;
+        text-transform: uppercase;
+        color: #B9BDCF;
+    }
+
+    .citySearch {
+        border: none;
+        background-color: #FFFFFF;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+        padding: 16px;
+    }
 `;
 
 function Location() {
@@ -36107,9 +36139,12 @@ function Location() {
 
   return /*#__PURE__*/_react.default.createElement(FormStyle, null, /*#__PURE__*/_react.default.createElement("label", null, "Full time", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox"
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Location"), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
+  })), /*#__PURE__*/_react.default.createElement("label", {
+    className: "locationLabel"
+  }, "Location"), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    placeholder: " City, state, zip code or country"
+    placeholder: " City, state, zip code or country",
+    className: "citySearch"
   })), /*#__PURE__*/_react.default.createElement("label", null, "London", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox"
   })), /*#__PURE__*/_react.default.createElement("label", null, "Amsterdam", /*#__PURE__*/_react.default.createElement("input", {
@@ -36136,8 +36171,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const endPoint = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json";
-const details = "?page=1&search=code";
+const endPoint = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?page=1&search=code";
 
 function JobDetails() {
   const {
@@ -36146,7 +36180,7 @@ function JobDetails() {
   const [jobDetails, setJobDetails] = (0, _react.useState)();
 
   async function getJobDetails() {
-    const response = await fetch(endPoint + description + details);
+    const response = await fetch(endPoint);
     const data = await response.json();
     console.log(data);
     setJobDetails(data);
@@ -36156,7 +36190,7 @@ function JobDetails() {
     getJobDetails();
   }, []);
   const getMoredetails = jobDetails.map(job => /*#__PURE__*/_react.default.createElement("p", null, job.description));
-  return /*#__PURE__*/_react.default.createElement("div", null, getMoredetails, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, description), getMoredetails, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, "Go back!"));
 }
@@ -36199,15 +36233,36 @@ const DivWrapper = _styledComponents.default.div`
     font-size: 24px;
     font-weight: bold;
   }
+
+  @media (min-width: 900px) {
+    margin: auto;
+    max-width: 1000px;
+
+    .contentWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .loading {
+      text-align: end;
+    }
+  }
 `;
 
 function App() {
   const {
     state
   } = (0, _react.useContext)(_Context.Context);
-  return /*#__PURE__*/_react.default.createElement(DivWrapper, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Location.default, null), state.isLoaded ? /*#__PURE__*/_react.default.createElement("p", {
+  return /*#__PURE__*/_react.default.createElement(DivWrapper, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
+    className: "contentWrapper"
+  }, /*#__PURE__*/_react.default.createElement(_Location.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/"
+  }, state.isLoaded ? /*#__PURE__*/_react.default.createElement("p", {
     className: "loading"
-  }, "LOADING ...") : /*#__PURE__*/_react.default.createElement(_ListsOfJob.default, null));
+  }, "LOADING ...") : /*#__PURE__*/_react.default.createElement(_ListsOfJob.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/positions/:description"
+  }, /*#__PURE__*/_react.default.createElement(_JobDetails.default, null))))));
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Context":"Context.js","./ListsOfJob":"ListsOfJob.js","./Header":"Header.js","./Location":"Location.js","./JobDetails":"JobDetails.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";

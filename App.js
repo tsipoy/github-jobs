@@ -18,6 +18,21 @@ const DivWrapper = styled.div`
     font-size: 24px;
     font-weight: bold;
   }
+
+  @media (min-width: 900px) {
+    margin: auto;
+    max-width: 1000px;
+
+    .contentWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .loading {
+      text-align: end;
+    }
+  }
 `;
 
 export default function App() {
@@ -25,15 +40,23 @@ export default function App() {
   return (
     <DivWrapper>
       <Header />
-      <Location />
-      {state.isLoaded ? <p className="loading">LOADING ...</p> : <ListOfJobs />}
-      {/* <Router>
-        <Switch>
-          <Route path="/positions/">
-            <JobDetails />
-          </Route>
-        </Switch>
-      </Router> */}
+      <div className="contentWrapper">
+        <Location />
+        <Router>
+          <Switch>
+            <Route path="/">
+              {state.isLoaded ? (
+                <p className="loading">LOADING ...</p>
+              ) : (
+                <ListOfJobs />
+              )}
+            </Route>
+            <Route path="/positions/:description">
+              <JobDetails />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
     </DivWrapper>
   );
 }

@@ -34,6 +34,13 @@ const HeaderStyle = styled.div`
     padding-inline-start: 27px;
     border: none;
   }
+
+  @media(min-width: 900px) {
+    form {
+      margin: auto;
+      max-width: 900px;
+    }
+  }
 `;
 
 export default function Header() {
