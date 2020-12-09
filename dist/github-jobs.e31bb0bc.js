@@ -35943,6 +35943,10 @@ const MainContent = _styledComponents.default.div`
     color: #b9bdcf;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   @media (min-width: 900px) {
     padding-block-end: 0;
     margin-inline-start: 23px;
@@ -35959,17 +35963,17 @@ function ListsOfJob() {
 
   const allJobs = jobs.map(job => /*#__PURE__*/_react.default.createElement(MainContent, {
     key: job.id
-  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: `/details/${job.id}`
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: job.company_logo
-  }), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("li", null, job.title), /*#__PURE__*/_react.default.createElement("li", {
+  }), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, job.company), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: `/details/${job.id}`
+  }, job.title)), /*#__PURE__*/_react.default.createElement("li", {
     className: "type"
   }, job.type)), /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("i", {
     className: "ri-earth-fill"
   }), " ", job.location), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("i", {
     className: "ri-time-line"
-  }), " ", job.created_at))))));
+  }), " ", job.created_at)))));
   return /*#__PURE__*/_react.default.createElement("div", null, allJobs);
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Context":"Context.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Header.js":[function(require,module,exports) {
@@ -36274,7 +36278,7 @@ function App() {
   }, isLoaded ? /*#__PURE__*/_react.default.createElement("p", {
     className: "loading"
   }, "LOADING ...") : /*#__PURE__*/_react.default.createElement(_ListsOfJob.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/description/:description "
+    path: "/description/:description"
   }, /*#__PURE__*/_react.default.createElement(_JobDetails.default, null))))));
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Context":"Context.js","./ListsOfJob":"ListsOfJob.js","./Header":"Header.js","./Location":"Location.js","./JobDetails":"JobDetails.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"index.js":[function(require,module,exports) {

@@ -52,7 +52,7 @@ export default function App() {
                 <ListOfJobs />
               )}
             </Route>
-            <Route path="/description/:description ">
+            <Route path="/description/:description">
               <JobDetails />
             </Route>
           </Switch>
