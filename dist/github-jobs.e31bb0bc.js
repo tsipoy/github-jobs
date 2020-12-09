@@ -35992,20 +35992,34 @@ const HeaderStyle = _styledComponents.default.div`
   padding-block-end: 29px;
 
   form {
-    background-color: cadetblue;
-    padding-block-end: 41px;
-    padding-block-start: 42px;
-    padding-inline-end: 13px;
-    padding-inline-start: 13px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    padding-block-end: 4px;
+    padding-block-start: 4px;
+    padding-inline-end: 5px;
+    border-radius: 4px;
+    width: -webkit-fill-available;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-radius: 8px;
   }
 
   input {
     padding: 10px;
     border-radius: 8px;
+    border: none;
+  }
+
+  button {
+    background-color: #1E86FF;
+    border-radius: 4px;
+    color: white;
+    line-height: 19px;
+    padding-block-start: 14px;
+    padding-block-end: 14px;
+    padding-inline-end: 27px;
+    padding-inline-start: 27px;
+    border: none;
   }
 `;
 
@@ -36014,26 +36028,13 @@ function Header() {
     state
   } = (0, _react.useContext)(_Context.Context);
   const {
-    jobs,
-    inputValue
+    jobs
   } = state;
+  const [inputValue, setInputValue] = (0, _react.useState)("");
+  const [location, setLocation] = (0, _react.useState)([]);
 
   const handleSubmit = e => {
     e.preventDefault();
-  };
-
-  const searchJobs = e => {
-    dispatch({
-      type: "SET_INPUT_VALUE",
-      inputValue: e.target.value
-    });
-    const filteredCities = jobs.filter(job => {
-      return job.location.toLowerCase() === e.target.value;
-    });
-    dispatch({
-      type: "SET_JOBS",
-      filteredCities
-    });
   }; // const allJobs = jobs.map((job) => (
   //     console.log(job)
   // ));
@@ -36043,19 +36044,21 @@ function Header() {
   // }
   // );
   // useEffect(() => {
-  //   searchJobs();
-  // }, [inputValue]);
+  //   setLocation(filteredJobs);
+  // }, []);
 
 
-  return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", null, "Github Jobs"), /*#__PURE__*/_react.default.createElement("form", {
+  return /*#__PURE__*/_react.default.createElement(HeaderStyle, null, /*#__PURE__*/_react.default.createElement("h1", null, "Github Jobs"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "header-style"
+  }, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "input",
-    value: inputValue,
-    onChange: searchJobs,
+    name: "input" // value={inputValue}
+    // onChange={(e) => setInputValue(e.target.value)}
+    ,
     placeholder: "Title, companies, experti..."
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Search")));
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Search"))));
 }
 },{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./Context":"Context.js"}],"Location.js":[function(require,module,exports) {
 "use strict";
@@ -36092,8 +36095,16 @@ function Location() {
     dispatch
   } = (0, _react.useContext)(_Context.Context);
   const {
-    isChecked
+    isChecked,
+    jobs
   } = state;
+
+  const filteredChecked = () => {
+    if (isChecked) {
+      const filteredLocation = jobs.filter(jobs.location === isChecked);
+    }
+  };
+
   return /*#__PURE__*/_react.default.createElement(FormStyle, null, /*#__PURE__*/_react.default.createElement("label", null, "Full time", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox"
   })), /*#__PURE__*/_react.default.createElement("label", null, "Location"), /*#__PURE__*/_react.default.createElement("label", null, /*#__PURE__*/_react.default.createElement("input", {

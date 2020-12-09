@@ -7,3 +7,36 @@ html {
     font-family: Roboto;
     color: #334680;
 }
+
+.header-style {
+    background-image: url('./backgroundImg.png');
+    background-repeat: no-repeat;
+    padding-block-end: 41px;
+    padding-block-start: 42px;
+    padding-inline-end: 13px;
+    padding-inline-start: 13px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+/* .header-style input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.header-style button {
+    background-color: #1E86FF;
+    border-radius: 4px;
+    color: white;
+    line-height: 19px;
+    padding-block-start: 14px;
+    padding-block-end: 14px;
+    padding-inline-end: 27px;
+    padding-inline-start: 27px;
+    border: none;
+} */
+
+
